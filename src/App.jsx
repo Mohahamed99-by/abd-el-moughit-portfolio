@@ -1,15 +1,18 @@
 import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import About from "./components/About";
-import Portfolio from "./components/Portfolio";
-import Services from "./components/Services";
+import PortfolioFromAPI from "./components/PortfolioFromAPI";
+import PortfolioTest from "./components/PortfolioTest";
+import PortfolioHybrid from "./components/PortfolioHybrid";
+import Pricing from "./components/Pricing";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import AdvancedStats from "./components/AdvancedStats";
-import InteractiveTimeline from "./components/InteractiveTimeline";
 import SkillsShowcase from "./components/SkillsShowcase";
+import AdminApp from "./admin/AdminApp";
 
-function App() {
+function MainPortfolio() {
   useEffect(() => {
     // Intersection Observer for animations
     const observerOptions = {
@@ -213,13 +216,10 @@ function App() {
       <SkillsShowcase />
 
       {/* Portfolio Section */}
-      <Portfolio />
+      <PortfolioFromAPI />
 
-      {/* Interactive Timeline Section */}
-      <InteractiveTimeline />
-
-      {/* Services Section */}
-      <Services />
+      {/* Pricing Section */}
+      <Pricing />
 
       {/* Contact Section */}
       <Contact />
@@ -227,6 +227,17 @@ function App() {
       {/* Footer */}
       <Footer />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/admin/*" element={<AdminApp />} />
+        <Route path="/*" element={<MainPortfolio />} />
+      </Routes>
+    </Router>
   );
 }
 

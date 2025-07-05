@@ -20,8 +20,8 @@ function About() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Column - Story */}
+        <div className="max-w-4xl mx-auto">
+          {/* Story Section */}
           <div className="fade-in">
             <div className="space-y-6">
               <div className="glass p-8 rounded-2xl border border-white/10">
@@ -47,41 +47,6 @@ function About() {
                   <div className="text-gray-400 text-sm uppercase tracking-wider">Happy Clients</div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* Right Column - Skills */}
-          <div className="fade-in">
-            <h3 className="text-2xl font-bold text-white mb-8">Technical Expertise</h3>
-            <div className="space-y-6">
-              {portfolioData.skills.map((skill, index) => (
-                <div key={index} className="glass p-6 rounded-xl border border-white/10 card-hover">
-                  <div className="flex justify-between items-center mb-4">
-                    <h4 className="text-lg font-semibold text-white">{skill.name}</h4>
-                    <span className="text-sm font-medium gradient-text">{skill.level}%</span>
-                  </div>
-                  
-                  {/* Progress Bar */}
-                  <div className="w-full bg-gray-800 rounded-full h-2 mb-4">
-                    <div 
-                      className="h-2 bg-gradient-to-r from-yellow-500 to-purple-600 rounded-full transition-all duration-1000 ease-out"
-                      style={{ width: `${skill.level}%` }}
-                    ></div>
-                  </div>
-                  
-                  {/* Tools */}
-                  <div className="flex flex-wrap gap-2">
-                    {skill.tools.map((tool, toolIndex) => (
-                      <span 
-                        key={toolIndex}
-                        className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300 hover:bg-white/10 transition-colors duration-300"
-                      >
-                        {tool}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
