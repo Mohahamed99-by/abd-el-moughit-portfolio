@@ -27,7 +27,6 @@ export const portfolioData = {
     {
       id: 1,
       title: "Corporate Brand Video",
-      category: "Commercial",
       thumbnail:"/images/image_1_project.png",
       video: "/videos/agency.net.mp4",
       featured: true
@@ -35,57 +34,41 @@ export const portfolioData = {
     {
       id: 2,
       title: "Wedding Highlight Reel",
-      category: "Wedding",
       thumbnail:
-        "https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=400&fit=crop&crop=center",
+        "/images/image_2_project.png",
+        video: '/videos/video_2.mp4',
       featured: true
     },
     {
       id: 3,
       title: "Product Launch Campaign",
-      category: "Commercial",
       thumbnail:
-        "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop&crop=center",
+        "/images/image_3_project.png",
+        video: '/videos/video_3.mp4',
       featured: false
     },
     {
       id: 4,
       title: "Documentary Short",
-      category: "Documentary",
       thumbnail:
-        "https://images.unsplash.com/photo-1478720568477-b2709d01bdda?w=600&h=400&fit=crop&crop=center",
+        "/images/image_4_project.png",
+        video: "videos/video_4.mp4",
       featured: true
     },
     {
       id: 5,
       title: "Music Video",
-      category: "Music",
-      thumbnail:
-        "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=400&fit=crop&crop=center",
+     thumbnail:
+        "/images/image_5_project.png",
+        video: "videos/video_5.mp4",
       featured: false
     },
     {
       id: 6,
       title: "Real Estate Tour",
-      category: "Real Estate",
-      thumbnail:
-        "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop&crop=center",
-      featured: false
-    },
-    {
-      id: 7,
-      title: "Tech Startup Pitch",
-      category: "Commercial",
-      thumbnail:
-        "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop&crop=center",
-      featured: true
-    },
-    {
-      id: 8,
-      title: "Fashion Brand Campaign",
-      category: "Fashion",
-      thumbnail:
-        "https://images.unsplash.com/photo-1445205170230-053b83016050?w=600&h=400&fit=crop&crop=center",
+     thumbnail:
+        "/images/image_6_project.png",
+        video: "videos/video_6.mp4",
       featured: false
     }
   ],
@@ -142,8 +125,8 @@ export const portfolioData = {
   ],
 
   contact: {
-    email: "contact@videoportfolio.com",
-    phone: "+212612455372",
+    email: "moughitmoughit777@gmail.com",
+    phone: "+212 624-821600",
     location: "Morocco",
     social: [
       {
@@ -154,9 +137,21 @@ export const portfolioData = {
       },
       {
         name: "WhatsApp",
-        url: "https://wa.me/212612455372",
+        url: "https://wa.me/212624821600",
         icon: "whatsapp",
-        handle: "+212612455372"
+        handle: "+212 624-821600"
+      },
+      {
+        name: "Gmail",
+        url: "mailto:moughitmoughit777@gmail.com",
+        icon: "gmail",
+        handle: "moughitmoughit777@gmail.com"
+      },
+      {
+        name: "Facebook",
+        url: "https://www.facebook.com/share/19WRcY1fmt/?mibextid=wwXIfr",
+        icon: "facebook",
+        handle: "Facebook Profile"
       }
     ]
   },

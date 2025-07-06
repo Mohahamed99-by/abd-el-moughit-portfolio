@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import About from "./components/About";
 import PortfolioFromAPI from "./components/PortfolioFromAPI";
-
+import FloatingSocialIcons from "./components/FloatingSocialIcons";
 import Pricing from "./components/Pricing";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -35,6 +35,9 @@ function MainPortfolio() {
 
   return (
     <div className="min-h-screen">
+      {/* Floating Social Icons */}
+      <FloatingSocialIcons />
+      
       {/* Navigation Header */}
       <Navbar />
 

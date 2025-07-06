@@ -108,17 +108,17 @@ function Pricing() {
                   {/* Old Price - Crossed Out */}
                   {index === 0 && (
                     <div className="text-lg font-semibold text-red-500 line-through">
-                      $35 ❌
+                      $35 
                     </div>
                   )}
                   {index === 1 && (
                     <div className="text-lg font-semibold text-red-500 line-through">
-                      $47 ❌
+                      $47 
                     </div>
                   )}
                   {index === 2 && (
                     <div className="text-lg font-semibold text-red-500 line-through">
-                      $60+ ❌
+                      $60+ 
                     </div>
                   )}
                 </div>

@@ -186,7 +186,7 @@ function PortfolioFromAPI() {
                           </span>
                         </div>
                         <div>
-                          <span className="text-sm text-gray-400">{project.category}</span>
+                          <span className="text-sm text-gray-400">Project #{project.id}</span>
                         </div>
                       </div>
                       
@@ -239,11 +239,6 @@ function PortfolioFromAPI() {
 
                       {/* Badges */}
                       <div className="absolute top-2 left-2 flex gap-2">
-                        {project.category && (
-                          <span className="px-2 py-1 bg-gradient-to-r from-yellow-500/80 to-purple-600/80 rounded-full text-xs text-white font-medium">
-                            {project.category}
-                          </span>
-                        )}
                         {project.featured && (
                           <span className="px-2 py-1 bg-yellow-500 rounded-full">
                             <svg className="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20">
@@ -305,8 +300,8 @@ function PortfolioFromAPI() {
             <div className="text-gray-400 text-sm">Featured Works</div>
           </div>
           <div className="text-center glass p-6 rounded-xl border border-white/10">
-            <div className="text-2xl font-bold gradient-text">{new Set(projects.map(p => p.category).filter(Boolean)).size}</div>
-            <div className="text-gray-400 text-sm">Categories</div>
+            <div className="text-2xl font-bold gradient-text">{projects.filter(p => p.video).length}</div>
+            <div className="text-gray-400 text-sm">With Videos</div>
           </div>
         </div>
 
@@ -414,9 +409,9 @@ function PortfolioFromAPI() {
                   <h4 className="text-lg font-semibold text-white mb-6">Project Details</h4>
                   <div className="inline-flex items-center space-x-4 text-sm">
                     <div className="flex items-center space-x-2">
-                      <span className="text-gray-400">Category:</span>
+                      <span className="text-gray-400">Project ID:</span>
                       <span className="px-3 py-1 bg-gradient-to-r from-yellow-500/20 to-purple-600/20 border border-yellow-500/30 rounded-full text-xs text-yellow-300">
-                        {selectedProject.category}
+                        #{selectedProject.id}
                       </span>
                     </div>
                     {selectedProject.featured && (
