@@ -17,7 +17,7 @@ function Navbar() {
     { href: '#home', label: 'Home' },
     { href: '#about', label: 'About' },
     { href: '#portfolio', label: 'Portfolio' },
-    { href: '#services', label: 'Services' },
+    { href: '#pricing', label: 'Pricing' },
     { href: '#contact', label: 'Contact' }
   ];
 
