@@ -28,161 +28,64 @@ export const portfolioData = {
       id: 1,
       title: "Corporate Brand Video",
       category: "Commercial",
-      description:
-        "A dynamic brand video showcasing modern corporate values with sleek animations and professional storytelling.",
-      thumbnail:
-        "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop&crop=center",
-      duration: "2:30",
-      client: "Tech Innovations Inc.",
-      techDetails: [
-        "4K Resolution",
-        "Advanced Color Grading",
-        "Motion Graphics",
-        "Professional Audio Mix",
-        "Multi-camera Editing"
-      ],
-      tags: ["Corporate", "Branding", "Motion Graphics"],
-      year: 2024,
+      thumbnail:"/images/image_1_project.png",
+      video: "/videos/agency.net.mp4",
       featured: true
     },
     {
       id: 2,
       title: "Wedding Highlight Reel",
       category: "Wedding",
-      description:
-        "An emotional wedding highlight reel capturing the most precious moments with cinematic color grading and smooth transitions.",
       thumbnail:
         "https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=400&fit=crop&crop=center",
-      duration: "4:15",
-      client: "Sarah & Michael",
-      techDetails: [
-        "Cinematic Color Grading",
-        "Emotional Storytelling",
-        "Smooth Transitions",
-        "Audio Synchronization"
-      ],
-      tags: ["Wedding", "Cinematic", "Emotional"],
-      year: 2024,
       featured: true
     },
     {
       id: 3,
       title: "Product Launch Campaign",
       category: "Commercial",
-      description:
-        "High-energy product showcase with dynamic motion graphics and compelling visual storytelling for a successful product launch.",
       thumbnail:
         "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop&crop=center",
-      duration: "1:45",
-      client: "Innovation Labs",
-      techDetails: [
-        "Dynamic Motion Graphics",
-        "Product Visualization",
-        "High-energy Editing",
-        "Brand Integration"
-      ],
-      tags: ["Product", "Launch", "Commercial"],
-      year: 2024,
       featured: false
     },
     {
       id: 4,
       title: "Documentary Short",
       category: "Documentary",
-      description:
-        "A powerful documentary piece exploring social impact with thoughtful editing and compelling narrative structure.",
       thumbnail:
         "https://images.unsplash.com/photo-1478720568477-b2709d01bdda?w=600&h=400&fit=crop&crop=center",
-      duration: "12:30",
-      client: "Impact Stories",
-      techDetails: [
-        "Narrative Structure",
-        "Interview Editing",
-        "B-roll Integration",
-        "Social Impact Focus"
-      ],
-      tags: ["Documentary", "Social Impact", "Storytelling"],
-      year: 2023,
       featured: true
     },
     {
       id: 5,
       title: "Music Video",
       category: "Music",
-      description:
-        "Creative music video with rhythmic editing, vibrant color schemes, and innovative visual effects synchronized to the beat.",
       thumbnail:
         "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=400&fit=crop&crop=center",
-      duration: "3:20",
-      client: "Rising Star Records",
-      techDetails: [
-        "Rhythmic Editing",
-        "Beat Synchronization",
-        "Visual Effects",
-        "Creative Transitions"
-      ],
-      tags: ["Music", "Creative", "Visual Effects"],
-      year: 2023,
       featured: false
     },
     {
       id: 6,
       title: "Real Estate Tour",
       category: "Real Estate",
-      description:
-        "Cinematic property showcase featuring smooth camera movements and luxurious presentation for high-end real estate marketing.",
       thumbnail:
         "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop&crop=center",
-      duration: "2:00",
-      client: "Luxury Properties",
-      techDetails: [
-        "Cinematic Camera Work",
-        "Luxury Presentation",
-        "Smooth Movements",
-        "Property Showcase"
-      ],
-      tags: ["Real Estate", "Luxury", "Cinematic"],
-      year: 2023,
       featured: false
     },
     {
       id: 7,
       title: "Tech Startup Pitch",
       category: "Commercial",
-      description:
-        "Compelling pitch video for a tech startup featuring animated infographics and professional presentation.",
       thumbnail:
         "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop&crop=center",
-      duration: "3:45",
-      client: "StartupTech",
-      techDetails: [
-        "Animated Infographics",
-        "Data Visualization",
-        "Professional Presentation",
-        "Startup Branding"
-      ],
-      tags: ["Startup", "Tech", "Pitch"],
-      year: 2024,
       featured: true
     },
     {
       id: 8,
       title: "Fashion Brand Campaign",
       category: "Fashion",
-      description:
-        "Stylish fashion campaign video with dynamic cuts, color grading, and modern aesthetic for luxury brand.",
       thumbnail:
         "https://images.unsplash.com/photo-1445205170230-053b83016050?w=600&h=400&fit=crop&crop=center",
-      duration: "2:15",
-      client: "Luxe Fashion",
-      techDetails: [
-        "Fashion Cinematography",
-        "Luxury Aesthetic",
-        "Dynamic Cuts",
-        "Brand Storytelling"
-      ],
-      tags: ["Fashion", "Luxury", "Brand"],
-      year: 2024,
       featured: false
     }
   ],
@@ -237,6 +140,26 @@ export const portfolioData = {
       ],
     },
   ],
+
+  contact: {
+    email: "contact@videoportfolio.com",
+    phone: "+212612455372",
+    location: "Morocco",
+    social: [
+      {
+        name: "Instagram",
+        url: "https://www.instagram.com/moughit_mr?igsh=bDg3dXRxN29iZjlu&utm_source=qr",
+        icon: "instagram",
+        handle: "@moughit_mr"
+      },
+      {
+        name: "WhatsApp",
+        url: "https://wa.me/212612455372",
+        icon: "whatsapp",
+        handle: "+212612455372"
+      }
+    ]
+  },
 
   testimonials: [
     {

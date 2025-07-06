@@ -1,31 +1,14 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
+import { portfolioData } from '../data/portfolioData';
 
 function PortfolioFromAPI() {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [projects] = useState(portfolioData.projects);
   const [activeFilter, setActiveFilter] = useState('All');
   const [hoveredProject, setHoveredProject] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [viewMode, setViewMode] = useState('grid');
-
-  useEffect(() => {
-    fetchProjects();
-  }, []);
-
-  const fetchProjects = async () => {
-    try {
-      const response = await axios.get('http://localhost:5000/api/projects');
-      setProjects(response.data);
-    } catch (error) {
-      setError('Failed to load projects');
-      console.error('Error fetching projects:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [videoLoading, setVideoLoading] = useState(false);
 
   const categories = ['All', 'Featured', ...new Set(projects.map(project => project.category).filter(Boolean))];
   
@@ -38,36 +21,16 @@ function PortfolioFromAPI() {
   const openModal = (project) => {
     setSelectedProject(project);
     setIsModalOpen(true);
+    if (project.video) {
+      setVideoLoading(true);
+    }
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedProject(null);
+    setVideoLoading(false);
   };
-
-  if (loading) {
-    return (
-      <section id="portfolio" className="section-padding bg-gradient-to-b from-slate-900 to-black">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center py-20">
-            <div className="text-xl text-white">Loading portfolio...</div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (error) {
-    return (
-      <section id="portfolio" className="section-padding bg-gradient-to-b from-slate-900 to-black">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center py-20">
-            <div className="text-xl text-red-400">{error}</div>
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section id="portfolio" className="section-padding bg-gradient-to-b from-slate-900 to-black">
@@ -81,6 +44,10 @@ function PortfolioFromAPI() {
             Featured
             <span className="gradient-text"> Projects</span>
           </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            A showcase of my recent work spanning various industries and creative challenges. 
+            Each project represents a unique story brought to life through careful editing and post-production.
+          </p>
         </div>
 
         {/* Filter Controls */}
@@ -147,7 +114,7 @@ function PortfolioFromAPI() {
           ) : viewMode === 'grid' ? (
             /* Grid View */
             <div className="masonry-grid">
-              {filteredProjects.map((project, index) => (
+              {filteredProjects.map((project) => (
                 <div
                   key={project.id}
                   className="group relative overflow-hidden rounded-2xl glass border border-white/10 card-hover"
@@ -156,24 +123,11 @@ function PortfolioFromAPI() {
                 >
                   {/* Project Media */}
                   <div className="relative overflow-hidden">
-                    {project.thumbnail_url ? (
-                      // Display thumbnail if available
-                      <img
-                        src={project.thumbnail_url}
-                        alt={project.title}
-                        className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                    ) : (
-                      // Display video directly if no thumbnail
-                      <video
-                        src={project.video_url}
-                        className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                        muted
-                        loop
-                        onMouseEnter={(e) => e.target.play()}
-                        onMouseLeave={(e) => e.target.pause()}
-                      />
-                    )}
+                    <img
+                      src={project.thumbnail}
+                      alt={project.title}
+                      className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
                     
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -190,7 +144,16 @@ function PortfolioFromAPI() {
                       </button>
                     </div>
 
-                    
+                    {/* Video Available Indicator */}
+                    {project.video && (
+                      <div className="absolute bottom-4 left-4 px-2 py-1 bg-red-600 rounded-full flex items-center">
+                        <svg className="w-3 h-3 text-white mr-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        <span className="text-xs text-white font-medium">Video</span>
+                      </div>
+                    )}
+
                     {/* Category Badge */}
                     {project.category && (
                       <div className="absolute top-4 left-4 px-3 py-1 bg-gradient-to-r from-yellow-500/80 to-purple-600/80 rounded-full">
@@ -200,7 +163,7 @@ function PortfolioFromAPI() {
 
                     {/* Featured Badge */}
                     {project.featured && (
-                      <div className="absolute top-4 left-20 px-2 py-1 bg-yellow-500 rounded-full">
+                      <div className="absolute top-4 right-4 px-2 py-1 bg-yellow-500 rounded-full">
                         <svg className="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
@@ -210,18 +173,23 @@ function PortfolioFromAPI() {
 
                   {/* Project Info */}
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:gradient-text transition-all duration-300">
+                    <h3 className="text-xl font-bold text-white mb-4 group-hover:gradient-text transition-all duration-300">
                       {project.title}
                     </h3>
-                    {project.description && (
-                      <p className="text-gray-300 text-sm mb-4 leading-relaxed">
-                        {project.description}
-                      </p>
-                    )}
-                    
-                    
-                    {/* Action Button */}
-                    <div className="flex justify-end">
+
+                    {/* Project Actions */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-8 h-8 bg-gradient-to-br from-yellow-500 to-purple-600 rounded-full flex items-center justify-center">
+                          <span className="text-xs text-white font-bold">
+                            {project.title.charAt(0)}
+                          </span>
+                        </div>
+                        <div>
+                          <span className="text-sm text-gray-400">{project.category}</span>
+                        </div>
+                      </div>
+                      
                       <button
                         onClick={() => openModal(project)}
                         className="text-yellow-400 hover:text-yellow-300 transition-colors duration-300"
@@ -241,7 +209,7 @@ function PortfolioFromAPI() {
           ) : (
             /* List View */
             <div className="space-y-6">
-              {filteredProjects.map((project, index) => (
+              {filteredProjects.map((project) => (
                 <div
                   key={project.id}
                   className="group glass p-6 rounded-2xl border border-white/10 card-hover"
@@ -251,22 +219,11 @@ function PortfolioFromAPI() {
                   <div className="grid md:grid-cols-3 gap-6 items-center">
                     {/* Project Media */}
                     <div className="relative overflow-hidden rounded-xl">
-                      {project.thumbnail_url ? (
-                        <img
-                          src={project.thumbnail_url}
-                          alt={project.title}
-                          className="w-full h-48 md:h-32 object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      ) : (
-                        <video
-                          src={project.video_url}
-                          className="w-full h-48 md:h-32 object-cover transition-transform duration-500 group-hover:scale-105"
-                          muted
-                          loop
-                          onMouseEnter={(e) => e.target.play()}
-                          onMouseLeave={(e) => e.target.pause()}
-                        />
-                      )}
+                      <img
+                        src={project.thumbnail}
+                        alt={project.title}
+                        className="w-full h-48 md:h-32 object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
                       
                       {/* Play Button Overlay */}
                       <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -296,6 +253,16 @@ function PortfolioFromAPI() {
                         )}
                       </div>
 
+                      {/* Video Available Indicator */}
+                      {project.video && (
+                        <div className="absolute bottom-2 left-2 px-2 py-1 bg-red-600 rounded-full flex items-center">
+                          <svg className="w-3 h-3 text-white mr-1" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                          </svg>
+                          <span className="text-xs text-white font-medium">Video</span>
+                        </div>
+                      )}
+
                                           </div>
 
                     {/* Project Info */}
@@ -305,11 +272,9 @@ function PortfolioFromAPI() {
                           <h3 className="text-xl font-bold text-white mb-1 group-hover:gradient-text transition-all duration-300">
                             {project.title}
                           </h3>
-                          {project.category && (
-                            <div className="text-sm text-gray-400">
-                              {project.category}
-                            </div>
-                          )}
+                          <div className="flex items-center space-x-4 text-sm text-gray-400">
+                            <span>{project.category}</span>
+                          </div>
                         </div>
                         <button
                           onClick={() => openModal(project)}
@@ -321,13 +286,7 @@ function PortfolioFromAPI() {
                         </button>
                       </div>
 
-                      {project.description && (
-                        <p className="text-gray-300 text-sm mb-4 leading-relaxed">
-                          {project.description}
-                        </p>
-                      )}
-
-                                          </div>
+                      </div>
                   </div>
                 </div>
               ))}
@@ -373,7 +332,7 @@ function PortfolioFromAPI() {
           </div>
         </div>
 
-        {/* Video Modal */}
+        {/* Project Details Modal */}
         {isModalOpen && selectedProject && (
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
             <div className="bg-black rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
@@ -389,17 +348,90 @@ function PortfolioFromAPI() {
                 </button>
               </div>
               <div className="p-6">
-                <video
-                  src={selectedProject.video_url}
-                  controls
-                  className="w-full rounded-lg"
-                  autoPlay
-                >
-                  Your browser does not support the video tag.
-                </video>
-                {selectedProject.description && (
-                  <p className="text-gray-300 mt-4">{selectedProject.description}</p>
+                {selectedProject.video ? (
+                  <div className="relative">
+                    {/* Loading Indicator */}
+                    {videoLoading && (
+                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10 rounded-lg mb-6">
+                        <div className="text-center text-white">
+                          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500 mx-auto mb-4"></div>
+                          <p className="text-sm">Loading video...</p>
+                        </div>
+                      </div>
+                    )}
+                    
+                    <video
+                      src={selectedProject.video}
+                      controls
+                      className="w-full rounded-lg mb-6 bg-black"
+                      poster={selectedProject.thumbnail}
+                      preload="metadata"
+                      style={{ maxHeight: '70vh' }}
+                      onLoadStart={() => {
+                        console.log('Video loading started:', selectedProject.video);
+                        setVideoLoading(true);
+                      }}
+                      onCanPlay={() => {
+                        console.log('Video can play:', selectedProject.video);
+                        setVideoLoading(false);
+                      }}
+                      onLoadedData={() => {
+                        console.log('Video loaded:', selectedProject.video);
+                        setVideoLoading(false);
+                      }}
+                      onError={(e) => {
+                        console.error('Video failed to load:', selectedProject.video, e);
+                        setVideoLoading(false);
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'block';
+                      }}
+                    >
+                      Your browser does not support the video tag.
+                    </video>
+                    
+                    <div 
+                      className="w-full rounded-lg mb-6 bg-gray-800 flex items-center justify-center p-8 text-gray-400"
+                      style={{ display: 'none' }}
+                    >
+                      <div className="text-center">
+                        <svg className="w-16 h-16 mx-auto mb-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                        <p className="text-lg font-medium">Video not available</p>
+                        <p className="text-sm">File: {selectedProject.video}</p>
+                        <p className="text-xs text-gray-500 mt-2">Check browser console for details</p>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <img
+                    src={selectedProject.thumbnail}
+                    alt={selectedProject.title}
+                    className="w-full rounded-lg mb-6"
+                  />
                 )}
+                <div className="text-center">
+                  <h4 className="text-lg font-semibold text-white mb-6">Project Details</h4>
+                  <div className="inline-flex items-center space-x-4 text-sm">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-gray-400">Category:</span>
+                      <span className="px-3 py-1 bg-gradient-to-r from-yellow-500/20 to-purple-600/20 border border-yellow-500/30 rounded-full text-xs text-yellow-300">
+                        {selectedProject.category}
+                      </span>
+                    </div>
+                    {selectedProject.featured && (
+                      <div className="flex items-center space-x-2">
+                        <span className="text-gray-400">Status:</span>
+                        <span className="px-3 py-1 bg-yellow-500/20 border border-yellow-500/30 rounded-full text-xs text-yellow-300 flex items-center">
+                          <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                          Featured
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -10,7 +10,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import AdvancedStats from "./components/AdvancedStats";
 import SkillsShowcase from "./components/SkillsShowcase";
-import AdminApp from "./admin/AdminApp";
+
 
 function MainPortfolio() {
   useEffect(() => {
@@ -234,7 +234,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/admin/*" element={<AdminApp />} />
         <Route path="/*" element={<MainPortfolio />} />
       </Routes>
     </Router>
