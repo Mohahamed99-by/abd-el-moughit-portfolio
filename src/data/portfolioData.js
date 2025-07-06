@@ -26,14 +26,14 @@ export const portfolioData = {
   projects: [
     {
       id: 1,
-      title: "Corporate Brand Video",
+      title: "Motion graphics",
       thumbnail:"/images/image_1_project.png",
       video: "/videos/agency.net.mp4",
       featured: true
     },
     {
       id: 2,
-      title: "Wedding Highlight Reel",
+      title: "Cinematic style",
       thumbnail:
         "/images/image_2_project.png",
         video: '/videos/video_2.mp4',
@@ -41,7 +41,7 @@ export const portfolioData = {
     },
     {
       id: 3,
-      title: "Product Launch Campaign",
+      title: "Writing style and sound effects",
       thumbnail:
         "/images/image_3_project.png",
         video: '/videos/video_3.mp4',
@@ -49,7 +49,7 @@ export const portfolioData = {
     },
     {
       id: 4,
-      title: "Documentary Short",
+      title: "Advertising videos",
       thumbnail:
         "/images/image_4_project.png",
         video: "videos/video_4.mp4",
@@ -57,10 +57,9 @@ export const portfolioData = {
     },
     {
       id: 5,
-      title: "Music Video",
-     thumbnail:
-        "/images/image_5_project.png",
-        video: "videos/video_5.mp4",
+      title: "Animatising advertising video",
+     thumbnail:"/images/Screenshot 2025-07-06 220826.png",
+        video: "/videos/video_44.mp4",
       featured: false
     },
     {
@@ -140,12 +139,6 @@ export const portfolioData = {
         url: "https://wa.me/212624821600",
         icon: "whatsapp",
         handle: "+212 624-821600"
-      },
-      {
-        name: "Gmail",
-        url: "mailto:moughitmoughit777@gmail.com",
-        icon: "gmail",
-        handle: "moughitmoughit777@gmail.com"
       },
       {
         name: "Facebook",
