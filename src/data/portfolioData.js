@@ -135,6 +135,12 @@ export const portfolioData = {
         handle: "@moughit_mr"
       },
       {
+        name: "Instagram",
+        url: "https://www.instagram.com/plan_bfree?igsh=dnhxMHB6dW1uOWJx",
+        icon: "instagram",
+        handle: "@plan_bfree"
+      },
+      {
         name: "WhatsApp",
         url: "https://wa.me/212624821600",
         icon: "whatsapp",
