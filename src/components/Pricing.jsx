@@ -3,7 +3,7 @@ function Pricing() {
     {
       title: "Basic Service",
       description: "Simple video editing with music and basic sound effects.",
-      price: "$20 per minute",
+      price: "$15 per minute",
       features: [
         "Simple video editing",
         "Music addition",
@@ -16,7 +16,7 @@ function Pricing() {
     {
       title: "Professional Service",
       description: "Advanced video editing including color correction, medium visual effects, and two revisions.",
-      price: "$40 per minute",
+      price: "$25 per minute",
       features: [
         "Advanced video editing",
         "Color correction",
@@ -31,7 +31,7 @@ function Pricing() {
     {
       title: "Premium Service",
       description: "Comprehensive video editing including complex visual effects, motion graphics, and unlimited revisions.",
-      price: "$50 per minute",
+      price: "$40 per minute",
       features: [
         "Comprehensive video editing",
         "Complex visual effects",
@@ -108,17 +108,17 @@ function Pricing() {
                   {/* Old Price - Crossed Out */}
                   {index === 0 && (
                     <div className="text-lg font-semibold text-red-500 line-through">
-                      $35 
+                      $25 
                     </div>
                   )}
                   {index === 1 && (
                     <div className="text-lg font-semibold text-red-500 line-through">
-                      $47 
+                      $37 
                     </div>
                   )}
                   {index === 2 && (
                     <div className="text-lg font-semibold text-red-500 line-through">
-                      $60+ 
+                      $55
                     </div>
                   )}
                 </div>
@@ -144,7 +144,7 @@ ${plan.features.map(feature => `• ${feature}`).join('\n')}
 📝 *Description:* ${plan.description}
 
 Could you please provide more information about this service and help me get started?`;
-                    const whatsappUrl = `https://wa.me/212612455372?text=${encodeURIComponent(message)}`;
+                    const whatsappUrl = `https://wa.me/212624821600?text=${encodeURIComponent(message)}`;
                     window.open(whatsappUrl, '_blank');
                   }}
                   className="relative w-full py-4 bg-gradient-to-r from-green-500 to-green-600 rounded-xl font-bold text-white hover:from-green-600 hover:to-green-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-green-500/25 flex items-center justify-center space-x-3 group overflow-hidden"
