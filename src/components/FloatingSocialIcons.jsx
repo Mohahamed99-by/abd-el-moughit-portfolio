@@ -29,7 +29,7 @@ function FloatingSocialIcons() {
   };
 
   return (
-    <div className="fixed left-6 top-1/2 transform -translate-y-1/2 z-50 space-y-4">
+    <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-50 space-y-4">
       {portfolioData.contact.social.map((social, index) => (
         <div key={index} className="group relative">
           <a
@@ -53,13 +53,13 @@ function FloatingSocialIcons() {
           </a>
           
           {/* Tooltip */}
-          <div className="absolute left-full ml-4 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
+          <div className="absolute right-full mr-4 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
             <div className="bg-black/90 backdrop-blur-sm text-white px-4 py-2 rounded-lg border border-white/20 whitespace-nowrap">
               <div className="font-semibold">{social.name}</div>
               <div className="text-sm text-gray-300">{social.handle}</div>
               {/* Arrow */}
-              <div className="absolute right-full top-1/2 transform -translate-y-1/2">
-                <div className="w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent border-r-black/90"></div>
+              <div className="absolute left-full top-1/2 transform -translate-y-1/2">
+                <div className="w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-black/90"></div>
               </div>
             </div>
           </div>
